@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-extension SKNode {
+extension SKNode { // saves the game
     class func unarchiveFromFile(file : NSString) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
             var sceneData = NSData.dataWithContentsOfFile(path, options: .DataReadingMappedIfSafe, error: nil)
@@ -26,6 +26,9 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
+    
+    let statusVC = StatusViewController()
+    let controlsVC = ControlsViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +47,9 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+        
+        self.view.addSubview(statusVC.view)
+        self.view.addSubview(controlsVC.view)
     }
 
     override func shouldAutorotate() -> Bool {
