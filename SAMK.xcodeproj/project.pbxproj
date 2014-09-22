@@ -15,6 +15,10 @@
 		277290C219D0666D006C5DE1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 277290C119D0666D006C5DE1 /* Images.xcassets */; };
 		277290C519D0666D006C5DE1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 277290C319D0666D006C5DE1 /* LaunchScreen.xib */; };
 		277290D119D0666D006C5DE1 /* SAMKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290D019D0666D006C5DE1 /* SAMKTests.swift */; };
+		277290DB19D0675E006C5DE1 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290DA19D0675E006C5DE1 /* Character.swift */; };
+		277290DD19D06777006C5DE1 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290DC19D06777006C5DE1 /* StatusViewController.swift */; };
+		277290DF19D067B7006C5DE1 /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290DE19D067B6006C5DE1 /* ControlsViewController.swift */; };
+		277290E119D0680A006C5DE1 /* PlayerConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290E019D0680A006C5DE1 /* PlayerConnect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,10 @@
 		277290CA19D0666D006C5DE1 /* SAMKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SAMKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		277290CF19D0666D006C5DE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		277290D019D0666D006C5DE1 /* SAMKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAMKTests.swift; sourceTree = "<group>"; };
+		277290DA19D0675E006C5DE1 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		277290DC19D06777006C5DE1 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		277290DE19D067B6006C5DE1 /* ControlsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
+		277290E019D0680A006C5DE1 /* PlayerConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerConnect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +89,10 @@
 		277290B319D0666D006C5DE1 /* SAMK */ = {
 			isa = PBXGroup;
 			children = (
+				277290DA19D0675E006C5DE1 /* Character.swift */,
+				277290DC19D06777006C5DE1 /* StatusViewController.swift */,
+				277290DE19D067B6006C5DE1 /* ControlsViewController.swift */,
+				277290E019D0680A006C5DE1 /* PlayerConnect.swift */,
 				277290B619D0666D006C5DE1 /* AppDelegate.swift */,
 				277290B819D0666D006C5DE1 /* GameScene.sks */,
 				277290BA19D0666D006C5DE1 /* GameScene.swift */,
@@ -221,7 +233,11 @@
 			files = (
 				277290BB19D0666D006C5DE1 /* GameScene.swift in Sources */,
 				277290BD19D0666D006C5DE1 /* GameViewController.swift in Sources */,
+				277290DF19D067B7006C5DE1 /* ControlsViewController.swift in Sources */,
 				277290B719D0666D006C5DE1 /* AppDelegate.swift in Sources */,
+				277290E119D0680A006C5DE1 /* PlayerConnect.swift in Sources */,
+				277290DB19D0675E006C5DE1 /* Character.swift in Sources */,
+				277290DD19D06777006C5DE1 /* StatusViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
