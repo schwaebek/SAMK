@@ -7,7 +7,19 @@
 //
 
 import UIKit
+import SpriteKit
 
 class Character: NSObject {
+    
+    var body: SKShapeNode!
+    
+    override init() {
+        super.init()
+        
+        body = SKShapeNode(rectOfSize: CGSizeMake(40, 70))
+        body.fillColor = UIColor.whiteColor()
+        body.physicsBody = SKPhysicsBody(rectangleOfSize: body.frame.size)
+        //body.physicsBody = SKPhysicsBody(rectangleOfSize: body.frame.size)
+    }
    
 }

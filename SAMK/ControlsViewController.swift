@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import SpriteKit
 
 class ControlsViewController: UIViewController {
+    
+    var scene: GameScene!
 
     var aButton = UIButton()
     var bButton = UIButton()
@@ -41,10 +44,28 @@ class ControlsViewController: UIViewController {
         bButton.setTitle("B", forState: .Normal)
         bButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         bButton.layer.cornerRadius = buttonSize / 2.0
+        bButton.addTarget(self, action: Selector("bTapped"), forControlEvents: .TouchUpInside)
         self.view.addSubview(bButton)
         
         renderJoyStick()
         
+    }
+    func aTapped()
+    {
+        var kamehameha = SKShapeNode(rectOfSize: CGSizeMake(100, 100), cornerRadius: 50)
+        kamehameha.fillColor = UIColor.cyanColor()
+        kamehameha.position = CGPointMake(scene.player1.body.position.x + 50, scene.player1.body.position.y)
+        kamehameha.physicsBody = SKPhysicsBody(circleOfRadius: 50)
+        kamehameha.physicsBody?.affectedByGravity = false
+        
+        scene.addChild(kamehameha)
+        
+        kamehameha.physicsBody?.applyImpulse(CGVectorMake(200.0, 0.0))
+        scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(-20.0, 0.0))
+    }
+    func bTapped()
+    {
+        scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(0.0, 50.0))
     }
     func renderJoyStick()
     {

@@ -20,6 +20,8 @@
 		277290DF19D067B7006C5DE1 /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290DE19D067B6006C5DE1 /* ControlsViewController.swift */; };
 		277290E119D0680A006C5DE1 /* PlayerConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290E019D0680A006C5DE1 /* PlayerConnect.swift */; };
 		277290E319D06E79006C5DE1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290E219D06E79006C5DE1 /* Constants.swift */; };
+		27BEB15319D1BF2F00BEA2DB /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 27BEB15119D1BF2F00BEA2DB /* MyParticle.sks */; };
+		27BEB15419D1BF2F00BEA2DB /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 27BEB15219D1BF2F00BEA2DB /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		277290DE19D067B6006C5DE1 /* ControlsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
 		277290E019D0680A006C5DE1 /* PlayerConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerConnect.swift; sourceTree = "<group>"; };
 		277290E219D06E79006C5DE1 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		27BEB15119D1BF2F00BEA2DB /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		27BEB15219D1BF2F00BEA2DB /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				277290BE19D0666D006C5DE1 /* Main.storyboard */,
 				277290C119D0666D006C5DE1 /* Images.xcassets */,
 				277290C319D0666D006C5DE1 /* LaunchScreen.xib */,
+				27BEB15119D1BF2F00BEA2DB /* MyParticle.sks */,
+				27BEB15219D1BF2F00BEA2DB /* spark.png */,
 				277290B419D0666D006C5DE1 /* Supporting Files */,
 			);
 			path = SAMK;
@@ -214,9 +220,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				277290C519D0666D006C5DE1 /* LaunchScreen.xib in Resources */,
+				27BEB15419D1BF2F00BEA2DB /* spark.png in Resources */,
 				277290C219D0666D006C5DE1 /* Images.xcassets in Resources */,
 				277290B919D0666D006C5DE1 /* GameScene.sks in Resources */,
 				277290C019D0666D006C5DE1 /* Main.storyboard in Resources */,
+				27BEB15319D1BF2F00BEA2DB /* MyParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +441,7 @@
 				277290D619D0666D006C5DE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		277290D719D0666D006C5DE1 /* Build configuration list for PBXNativeTarget "SAMKTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +450,7 @@
 				277290D919D0666D006C5DE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
