@@ -12,6 +12,8 @@ import SpriteKit
 class Character: NSObject {
     
     var body: SKShapeNode!
+    var direction: CGFloat = 1.0 // right
+    
     
     override init() {
         super.init()

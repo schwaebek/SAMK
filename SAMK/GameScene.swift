@@ -15,8 +15,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
-        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        //self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsWorld.contactDelegate = self
+        
+        player1.body.position = CGPointMake(100, 100)
+        self.addChild(player1.body)
         
         var floor = SKShapeNode(rectOfSize: CGSizeMake(SCREEN_WIDTH, 10))
         floor.fillColor = UIColor.darkGrayColor()
@@ -29,10 +32,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //floor.physicsBody = SKPhysicsBody(edgeLoopFromRect: floor.frame)
         //floor.physicsBody?.collisionBitMask = 1
         
-        player1.body.position = CGPointMake(100, 100)
-        self.addChild(player1.body)
-        
+        //listens for intersections
+        //player1.body.physicsBody?.contactTestBitMask = 1
         self.addChild(floor)
+        
+        var floor1 = SKShapeNode(rectOfSize: CGSizeMake(200, 10))
+        floor1.fillColor = UIColor.darkGrayColor()
+        floor1.position = CGPointMake(SCREEN_WIDTH / 2.0, 120)
+        
+        floor1.physicsBody = SKPhysicsBody(rectangleOfSize: floor.frame.size)
+        floor1.physicsBody?.affectedByGravity = false
+        floor1.physicsBody?.dynamic = false
+        
+        self.addChild(floor1)
         
         
         

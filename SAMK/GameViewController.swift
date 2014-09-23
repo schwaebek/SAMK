@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import MultipeerConnectivity
 
 extension SKNode { // saves the game
     class func unarchiveFromFile(file : NSString) -> SKNode? {
@@ -23,12 +24,13 @@ extension SKNode { // saves the game
             return nil
         }
     }
-}
 
-class GameViewController: UIViewController {
+
+class GameViewController: UIViewController, MCBrowserViewControllerDelegate{
     
     let statusVC = StatusViewController()
     let controlsVC = ControlsViewController()
+    let playerConnect = PlayerConnect()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +50,48 @@ class GameViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
-            skView.presentScene(scene)
+            //skView.presentScene(scene)
             controlsVC.scene = scene
         }
+        playerConnect.browser.delegate = self
         
-        self.view.addSubview(statusVC.view)
-        self.view.addSubview(controlsVC.view)
-    }
+        var findFriendsButton = UIButton(frame: CGRectMake(0, 0, 200, 100))
+        findFriendsButton.layer.cornerRadius = 50
+        findFriendsButton.setTitle("Find Friends", forState: .Normal)
+        findFriendsButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        findFriendsButton.backgroundColor = UIColor.whiteColor()
+        findFriendsButton.center = self.view.center
+        findFriendsButton.addTarget(self, action: Selector("findFriends"), forControlEvents: .TouchUpInside)
 
+        
+        self.view.addSubview(findFriendsButton)
+        
+        //self.view.addSubview(statusVC.view)
+        //self.view.addSubview(controlsVC.view)
+    }
+    func findFriends()
+    {
+        self.presentViewController(playerConnect.browser, animated: true, completion: nil)
+    }
+    func startGame()
+    {
+        
+    }
+        func browserViewControllerDidFinish(
+            browserViewController: MCBrowserViewController!)  {
+                // Called when the browser view controller is dismissed (ie the Done
+                // button was tapped)
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        func browserViewControllerWasCancelled(
+            browserViewController: MCBrowserViewController!)  {
+                // Called when the browser view controller is cancelled
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    
     override func shouldAutorotate() -> Bool {
         return true
     }
@@ -68,12 +104,9 @@ class GameViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+}
 }

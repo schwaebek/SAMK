@@ -36,6 +36,8 @@ class ControlsViewController: UIViewController {
         aButton.setTitle("A", forState: .Normal)
         aButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         aButton.layer.cornerRadius = buttonSize / 2.0
+        aButton.addTarget(self, action: Selector("aTapped"), forControlEvents: .TouchUpInside)
+
         self.view.addSubview(aButton)
         
         bButton.frame = CGRectMake(SCREEN_WIDTH - buttonSize - buttonPadding, self.view.frame.size.height - buttonSize * 2.0, buttonSize, buttonSize)
@@ -52,16 +54,24 @@ class ControlsViewController: UIViewController {
     }
     func aTapped()
     {
-        var kamehameha = SKShapeNode(rectOfSize: CGSizeMake(100, 100), cornerRadius: 50)
-        kamehameha.fillColor = UIColor.cyanColor()
-        kamehameha.position = CGPointMake(scene.player1.body.position.x + 50, scene.player1.body.position.y)
+        
+        var particlePath = NSBundle.mainBundle().pathForResource("MyParticle", ofType: "sks")
+        var sceneData = NSData.dataWithContentsOfFile(particlePath!, options: .DataReadingMappedIfSafe, error: nil)
+        var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+        
+        archiver.setClass(SKEmitterNode.self, forClassName: "SKEditorScene")
+        let node = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as SKEmitterNode?
+        archiver.finishDecoding()
+        
+        var kamehameha = node!
+        kamehameha.position = CGPointMake(scene.player1.body.position.x + 50 * scene.player1.direction, scene.player1.body.position.y)
         kamehameha.physicsBody = SKPhysicsBody(circleOfRadius: 50)
         kamehameha.physicsBody?.affectedByGravity = false
         
         scene.addChild(kamehameha)
         
-        kamehameha.physicsBody?.applyImpulse(CGVectorMake(200.0, 0.0))
-        scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(-20.0, 0.0))
+        kamehameha.physicsBody?.applyImpulse(CGVectorMake(200.0 * scene.player1.direction, 0.0))
+        scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(-20.0 * scene.player1.direction, 0.0))
     }
     func bTapped()
     {
@@ -85,22 +95,27 @@ class ControlsViewController: UIViewController {
     }
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {
-        for touch in touches.allObjects as [UITouch] {
-            let location = touch.locationInView(self.view)
-            if CGRectContainsPoint(joyStick.frame, location){
-                joyStickHandle.center = location
-                
-            }
-            
-        }
+        moveJoyStick(touches)
     }
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent)
+    {
+        moveJoyStick(touches)
+    }
+    func moveJoyStick(touches: NSSet)
     {
         for touch in touches.allObjects as [UITouch] {
             let location = touch.locationInView(self.view)
             if CGRectContainsPoint(joyStick.frame, location){
                 joyStickHandle.center = location
                 
+                if location.x > joyStick.center.x + 10 {
+                    scene.player1.direction = 1.0
+                    scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(40.0, 0.0))
+                }
+                if location.x < joyStick.center.x - 10 {
+                    scene.player1.direction = -1.0
+                    scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(-40.0, 0.0))
+                }
             }
             
         }
