@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import MultipeerConnectivity
 
-extension SKNode { // saves the game
+extension SKNode {
     class func unarchiveFromFile(file : NSString) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
             var sceneData = NSData.dataWithContentsOfFile(path, options: .DataReadingMappedIfSafe, error: nil)
@@ -24,21 +24,28 @@ extension SKNode { // saves the game
             return nil
         }
     }
+}
 
-
-class GameViewController: UIViewController, MCBrowserViewControllerDelegate{
+class GameViewController: UIViewController, MCBrowserViewControllerDelegate {
     
-    let statusVC = StatusViewController()
+    var statusVC = StatusViewController()
+    
     let controlsVC = ControlsViewController()
+    
     let playerConnect = PlayerConnect()
-
+    
+    var findFriendsButton = UIButton()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
-            scene.size = UIScreen.mainScreen().bounds.size
             
+            
+            scene.size = UIScreen.mainScreen().bounds.size
             
             let skView = self.view as SKView
             skView.showsFPS = true
@@ -50,52 +57,62 @@ class GameViewController: UIViewController, MCBrowserViewControllerDelegate{
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
-            //skView.presentScene(scene)
+            skView.presentScene(scene)
+            
             controlsVC.scene = scene
+            playerConnect.scene = scene
+            
         }
-        playerConnect.browser.delegate = self
         
-        var findFriendsButton = UIButton(frame: CGRectMake(0, 0, 200, 100))
+        playerConnect.browser.delegate  = self
+        
+        
+        findFriendsButton = UIButton(frame: self.view.frame)
         findFriendsButton.layer.cornerRadius = 50
         findFriendsButton.setTitle("Find Friends", forState: .Normal)
         findFriendsButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         findFriendsButton.backgroundColor = UIColor.whiteColor()
         findFriendsButton.center = self.view.center
         findFriendsButton.addTarget(self, action: Selector("findFriends"), forControlEvents: .TouchUpInside)
-
         
         self.view.addSubview(findFriendsButton)
         
-        //self.view.addSubview(statusVC.view)
-        //self.view.addSubview(controlsVC.view)
+        controlsVC.playerConnect = playerConnect
+        
+                self.view.addSubview(statusVC.view)
+                self.view.addSubview(controlsVC.view)
+        
+                self.view.addSubview(findFriendsButton)
+        
     }
-    func findFriends()
-    {
+    
+    func findFriends(){
         self.presentViewController(playerConnect.browser, animated: true, completion: nil)
     }
-    func startGame()
-    {
+    
+    func startGame(){
         
     }
-        func browserViewControllerDidFinish(
-            browserViewController: MCBrowserViewController!)  {
-                // Called when the browser view controller is dismissed (ie the Done
-                // button was tapped)
-                
-                self.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        func browserViewControllerWasCancelled(
-            browserViewController: MCBrowserViewController!)  {
-                // Called when the browser view controller is cancelled
-                
-                self.dismissViewControllerAnimated(true, completion: nil)
-        }
+    
+    func browserViewControllerDidFinish(
+        browserViewController: MCBrowserViewController!)  {
+            // Called when the browser view controller is dismissed (ie the Done
+            // button was tapped)
+            findFriendsButton.removeFromSuperview()
+            self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func browserViewControllerWasCancelled(
+        browserViewController: MCBrowserViewController!)  {
+            // Called when the browser view controller is cancelled
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     override func shouldAutorotate() -> Bool {
         return true
     }
-
+    
     override func supportedInterfaceOrientations() -> Int {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
@@ -103,10 +120,13 @@ class GameViewController: UIViewController, MCBrowserViewControllerDelegate{
             return Int(UIInterfaceOrientationMask.All.toRaw())
         }
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
     
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-}
 }

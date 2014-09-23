@@ -12,7 +12,7 @@ import SpriteKit
 class ControlsViewController: UIViewController {
     
     var scene: GameScene!
-
+    var playerConnect: PlayerConnect!
     var aButton = UIButton()
     var bButton = UIButton()
 
@@ -55,27 +55,14 @@ class ControlsViewController: UIViewController {
     func aTapped()
     {
         
-        var particlePath = NSBundle.mainBundle().pathForResource("MyParticle", ofType: "sks")
-        var sceneData = NSData.dataWithContentsOfFile(particlePath!, options: .DataReadingMappedIfSafe, error: nil)
-        var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
-        
-        archiver.setClass(SKEmitterNode.self, forClassName: "SKEditorScene")
-        let node = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as SKEmitterNode?
-        archiver.finishDecoding()
-        
-        var kamehameha = node!
-        kamehameha.position = CGPointMake(scene.player1.body.position.x + 50 * scene.player1.direction, scene.player1.body.position.y)
-        kamehameha.physicsBody = SKPhysicsBody(circleOfRadius: 50)
-        kamehameha.physicsBody?.affectedByGravity = false
-        
-        scene.addChild(kamehameha)
-        
-        kamehameha.physicsBody?.applyImpulse(CGVectorMake(200.0 * scene.player1.direction, 0.0))
-        scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(-20.0 * scene.player1.direction, 0.0))
+        scene.player1.fire()
+        playerConnect.sendPlayerInfo(["fire":true])
+
     }
     func bTapped()
     {
-        scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(0.0, 50.0))
+        scene.player1.jump()
+        playerConnect.sendPlayerInfo(["jump":true])
     }
     func renderJoyStick()
     {
@@ -101,24 +88,28 @@ class ControlsViewController: UIViewController {
     {
         moveJoyStick(touches)
     }
-    func moveJoyStick(touches: NSSet)
-    {
+    func moveJoyStick(touches: NSSet){
         for touch in touches.allObjects as [UITouch] {
             let location = touch.locationInView(self.view)
+            
             if CGRectContainsPoint(joyStick.frame, location){
                 joyStickHandle.center = location
                 
                 if location.x > joyStick.center.x + 10 {
-                    scene.player1.direction = 1.0
-                    scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(40.0, 0.0))
+                    scene.player1.moveRight()
+                    playerConnect.sendPlayerInfo(["moveRight":true])
+                    
                 }
-                if location.x < joyStick.center.x - 10 {
-                    scene.player1.direction = -1.0
-                    scene.player1.body.physicsBody?.applyImpulse(CGVectorMake(-40.0, 0.0))
+                
+                if location.x > joyStick.center.x - 10 {
+                    scene.player1.moveLeft()
+                    playerConnect.sendPlayerInfo(["moveLeft":true])
+                    
                 }
+                
             }
-            
         }
+        
     }
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent)
     {

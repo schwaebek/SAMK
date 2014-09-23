@@ -15,11 +15,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
-        //self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsWorld.contactDelegate = self
         
         player1.body.position = CGPointMake(100, 100)
         self.addChild(player1.body)
+        
+        player2.body.position = CGPointMake(100, 100)
+        self.addChild(player2.body)
         
         var floor = SKShapeNode(rectOfSize: CGSizeMake(SCREEN_WIDTH, 10))
         floor.fillColor = UIColor.darkGrayColor()
