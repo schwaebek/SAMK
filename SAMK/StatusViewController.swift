@@ -9,6 +9,8 @@
 import UIKit
 
 class StatusViewController: UIViewController {
+
+    var scene: GameScene!
     
     let player1HP = UIView()
     let player2HP = UIView()
@@ -38,19 +40,26 @@ class StatusViewController: UIViewController {
         player2HP.backgroundColor = UIColor.greenColor()
         
         self.view.addSubview(player2HP)
-        // Do any additional setup after loading the view.
         
-        self.setHealthForPlayer(30, player: 0)
-        setHealthForPlayer(60, player: 1)
+        setHealthForPlayer(MAX_HP, player: 0)
+        setHealthForPlayer(MAX_HP, player: 1)
+        
+        NSNotificationCenter.defaultCenter().addObserverForName("healthUpdate", object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
+            let hurtPlayer = notification.userInfo!["player"] as Character
+            let player = (hurtPlayer == self.scene.player1) ? 0 : 1
+            self.setHealthForPlayer(hurtPlayer.currentHP, player: player)
+        }
     }
-    func setHealthForPlayer(health: CGFloat, player: Int)
+    func setHealthForPlayer(health: Int, player: Int)
     {
+        let healthF = CGFloat(health)
+        let maxF = CGFloat(MAX_HP)
         switch player {
         case 0 :
             for view in player1HP.subviews as [UIView] {
                 view.removeFromSuperview()
             }
-            var lostHealth = UIView(frame: CGRectMake(0, 0, player1HP.frame.size.width - player1HP.frame.size.width / 100 * health, 10))
+            var lostHealth = UIView(frame: CGRectMake(0, 0, player1HP.frame.size.width - player1HP.frame.size.width / maxF * healthF, 10))
             lostHealth.backgroundColor = UIColor.redColor()
             player1HP.addSubview(lostHealth)
             
@@ -59,7 +68,7 @@ class StatusViewController: UIViewController {
                 view.removeFromSuperview()
                 
             }
-            var lostHealth = UIView(frame: CGRectMake(player2HP.frame.size.width / 100 * health, 0, player2HP.frame.size.width - player2HP.frame.size.width / 100 * health, 10))
+            var lostHealth = UIView(frame: CGRectMake(player2HP.frame.size.width / maxF * healthF, 0, player2HP.frame.size.width - player2HP.frame.size.width / maxF * healthF, 10))
             lostHealth.backgroundColor = UIColor.redColor()
             player2HP.addSubview(lostHealth)
         }

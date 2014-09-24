@@ -89,6 +89,8 @@
 		27006D4619D30104008F9424 /* Scene Images */ = {
 			isa = PBXGroup;
 			children = (
+				27006D4219D300CF008F9424 /* bunny.atlas */,
+				27006D4419D300DF008F9424 /* panda.atlas */,
 				27006D3619D2FAE6008F9424 /* sun.png */,
 				27006D2A19D2FAB9008F9424 /* bg.png */,
 				27006D3419D2FACE008F9424 /* cloud.png */,
@@ -101,8 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				27006D4619D30104008F9424 /* Scene Images */,
-				27006D4419D300DF008F9424 /* panda.atlas */,
-				27006D4219D300CF008F9424 /* bunny.atlas */,
 				277290B319D0666D006C5DE1 /* SAMK */,
 				277290CD19D0666D006C5DE1 /* SAMKTests */,
 				277290B219D0666D006C5DE1 /* Products */,

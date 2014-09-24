@@ -65,12 +65,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     func didBeginContact(contact: SKPhysicsContact) {
-        println(contact.bodyA)
-        println(contact.bodyB)
-    }
+        
+        if contact.bodyA.node == self {
+            contact.bodyB.node?.removeFromParent()
+
+        }
+        player1.checkHit(contact.bodyA, bodyB: contact.bodyB)
+        player1.checkHit(contact.bodyB, bodyB: contact.bodyA)
+        player2.checkHit(contact.bodyA, bodyB: contact.bodyB)
+        player2.checkHit(contact.bodyB, bodyB: contact.bodyA)
+            }
     
     override func update(currentTime: CFTimeInterval) {
-        
         sun.zRotation += 0.01
         /* Called before each frame is rendered */
     }
