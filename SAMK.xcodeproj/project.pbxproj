@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27006D2B19D2FAB9008F9424 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 27006D2A19D2FAB9008F9424 /* bg.png */; };
+		27006D3519D2FACE008F9424 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 27006D3419D2FACE008F9424 /* cloud.png */; };
+		27006D3719D2FAE6008F9424 /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 27006D3619D2FAE6008F9424 /* sun.png */; };
+		27006D3919D2FC0E008F9424 /* bg_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 27006D3819D2FC0E008F9424 /* bg_front.png */; };
+		27006D4319D300CF008F9424 /* bunny.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 27006D4219D300CF008F9424 /* bunny.atlas */; };
+		27006D4519D300DF008F9424 /* panda.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 27006D4419D300DF008F9424 /* panda.atlas */; };
 		277290B719D0666D006C5DE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290B619D0666D006C5DE1 /* AppDelegate.swift */; };
 		277290B919D0666D006C5DE1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 277290B819D0666D006C5DE1 /* GameScene.sks */; };
 		277290BB19D0666D006C5DE1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277290BA19D0666D006C5DE1 /* GameScene.swift */; };
@@ -35,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27006D2A19D2FAB9008F9424 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		27006D3419D2FACE008F9424 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		27006D3619D2FAE6008F9424 /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
+		27006D3819D2FC0E008F9424 /* bg_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_front.png; sourceTree = "<group>"; };
+		27006D4219D300CF008F9424 /* bunny.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bunny.atlas; sourceTree = "<group>"; };
+		27006D4419D300DF008F9424 /* panda.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = panda.atlas; sourceTree = "<group>"; };
 		277290B119D0666D006C5DE1 /* SAMK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAMK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277290B519D0666D006C5DE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		277290B619D0666D006C5DE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,9 +86,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27006D4619D30104008F9424 /* Scene Images */ = {
+			isa = PBXGroup;
+			children = (
+				27006D3619D2FAE6008F9424 /* sun.png */,
+				27006D2A19D2FAB9008F9424 /* bg.png */,
+				27006D3419D2FACE008F9424 /* cloud.png */,
+				27006D3819D2FC0E008F9424 /* bg_front.png */,
+			);
+			name = "Scene Images";
+			sourceTree = "<group>";
+		};
 		277290A819D0666D006C5DE1 = {
 			isa = PBXGroup;
 			children = (
+				27006D4619D30104008F9424 /* Scene Images */,
+				27006D4419D300DF008F9424 /* panda.atlas */,
+				27006D4219D300CF008F9424 /* bunny.atlas */,
 				277290B319D0666D006C5DE1 /* SAMK */,
 				277290CD19D0666D006C5DE1 /* SAMKTests */,
 				277290B219D0666D006C5DE1 /* Products */,
@@ -219,10 +245,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27006D3719D2FAE6008F9424 /* sun.png in Resources */,
+				27006D4319D300CF008F9424 /* bunny.atlas in Resources */,
 				277290C519D0666D006C5DE1 /* LaunchScreen.xib in Resources */,
 				27BEB15419D1BF2F00BEA2DB /* spark.png in Resources */,
+				27006D3919D2FC0E008F9424 /* bg_front.png in Resources */,
+				27006D3519D2FACE008F9424 /* cloud.png in Resources */,
+				27006D4519D300DF008F9424 /* panda.atlas in Resources */,
 				277290C219D0666D006C5DE1 /* Images.xcassets in Resources */,
 				277290B919D0666D006C5DE1 /* GameScene.sks in Resources */,
+				27006D2B19D2FAB9008F9424 /* bg.png in Resources */,
 				277290C019D0666D006C5DE1 /* Main.storyboard in Resources */,
 				27BEB15319D1BF2F00BEA2DB /* MyParticle.sks in Resources */,
 			);

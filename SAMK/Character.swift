@@ -12,29 +12,39 @@ import SpriteKit
 class Character: NSObject {
     
     var scene: GameScene!
-    var body: SKShapeNode!
+    var body: SKSpriteNode!
     var direction: CGFloat = 1.0 // right
+    var textureNames: [String] = []
     
-    
-    override init() {
+    init (animal:String) {
         super.init()
         
-        body = SKShapeNode(rectOfSize: CGSizeMake(40, 70))
-        body.fillColor = UIColor.whiteColor()
+        var characterAtlas = SKTextureAtlas(named: animal)
+        textureNames = sorted(characterAtlas.textureNames as [String],<)
+        
+        body = SKSpriteNode(imageNamed: textureNames[0] as String)
+        body.size = CGSizeMake(54, 116)
+        //body.fillColor = UIColor.whiteColor()
         body.physicsBody = SKPhysicsBody(rectangleOfSize: body.frame.size)
         //body.physicsBody = SKPhysicsBody(rectangleOfSize: body.frame.size)
     }
-    
-    
     func moveLeft()
     {
         direction = -1
-        body.physicsBody?.applyImpulse(CGVectorMake(-40, 0.0))
+        body.physicsBody?.applyImpulse(CGVectorMake(-30, 0.0))
+        
+        var walkAction = SKAction.animateWithTextures(texturesFromNames(), timePerFrame: 0.1, resize: false, restore: true)
+        body.runAction(walkAction)
+        body.xScale = direction
     }
     func moveRight()
     {
         direction = 1
-        body.physicsBody?.applyImpulse(CGVectorMake(40, 0.0))
+        body.physicsBody?.applyImpulse(CGVectorMake(30, 0.0))
+        
+        var walkAction = SKAction.animateWithTextures(texturesFromNames(), timePerFrame: 0.1, resize: false, restore: true)
+        body.runAction(walkAction)
+        body.xScale = direction
     }
     func jump()
     {
@@ -60,6 +70,14 @@ class Character: NSObject {
         
         kamehameha.physicsBody?.applyImpulse(CGVectorMake(200.0 * direction, 0.0))
         body.physicsBody?.applyImpulse(CGVectorMake(-20.0 * direction, 0.0))
+    }
+    func texturesFromNames() -> [SKTexture] {
+        var textures: [SKTexture] = []
+        for textureName in textureNames {
+            textures.append(SKTexture(imageNamed: textureName))
+        
+        }
+        return textures
     }
     
 }

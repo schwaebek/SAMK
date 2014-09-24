@@ -49,7 +49,7 @@ class GameViewController: UIViewController, MCBrowserViewControllerDelegate {
             
             let skView = self.view as SKView
             skView.showsFPS = true
-            skView.showsNodeCount = true
+            skView.showsNodeCount = false
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
@@ -75,14 +75,13 @@ class GameViewController: UIViewController, MCBrowserViewControllerDelegate {
         findFriendsButton.center = self.view.center
         findFriendsButton.addTarget(self, action: Selector("findFriends"), forControlEvents: .TouchUpInside)
         
-        self.view.addSubview(findFriendsButton)
-        
+     
         controlsVC.playerConnect = playerConnect
         
                 self.view.addSubview(statusVC.view)
                 self.view.addSubview(controlsVC.view)
         
-                self.view.addSubview(findFriendsButton)
+         //       self.view.addSubview(findFriendsButton)
         
     }
     
